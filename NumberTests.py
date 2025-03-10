@@ -10,7 +10,15 @@ def isThreeOrFive(n):
 
 def isPrime(p):
   """Returns boolean (True/False) if the value given is prime."""
-
+  if p == 2:
+    return True
+  if isEven(p):
+    return False
+  
+  for div in range(3, p // 2, 2):
+    if p % div == 0:
+      return False
+  
   return True
 
 def isEven(n):
@@ -41,18 +49,41 @@ def fibonacciSequence(value):
 
   return nums
 
+def find_10001st_prime():
+  count = 0
+  num = 2
+
+  while count < 10001:
+    if isPrime(num):
+      count += 1
+    num += 1
+  
+  return num - 1
+
+def sum_of_primes(limit):
+  print(f"Staring summation of primes up to 2000000...")
+  total = 0
+  for num in range(2, limit):
+    if isPrime(num):
+      total += num
+  return total
+
 #Test your new functions in this main
 def main():
-  knownPrimes = [3, 7, 11, 13, 17]
+  #knownPrimes = [3, 7, 11, 13, 17]
 
-  num = int(input("Enter a number: "))
+  #num = int(input("Enter a number: "))
 
-  if isPrime(num):
-    print("%d is a prime number" %(num))
+  #if isPrime(num):
+    #print("%d is a prime number" %(num))
 
-  if isEven(num):
-    print("%d is an even number" %(num))
+  #if isEven(num):
+    #print("%d is an even number" %(num))
 
+  #result = find_10001st_prime()
+  #print(result)
 
+  result = sum_of_primes(2000000)
+  print(result)
 if __name__ == '__main__':
     main()
